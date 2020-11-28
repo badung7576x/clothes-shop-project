@@ -39,7 +39,9 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @yield('content')
+        <div class="container-fluid">
+            @yield('content')
+        </div>
     </div>
     <!-- /.content-wrapper -->
     @include('layouts.footer')
@@ -70,5 +72,6 @@
 {{--<script src="{{asset("admin/js/pages/dashboard.js")}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("admin/js/demo.js")}}"></script>
+@stack('scripts')
 </body>
 </html>
