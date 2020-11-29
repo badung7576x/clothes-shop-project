@@ -24,4 +24,14 @@ class ProductRepository extends BaseRepository implements ProductInterface
         return $this->_model->paginate($perPage);
     }
 
+    public function findByName($nameProduct)
+    {
+        return $this->_model::where('name', 'like', '%' . $nameProduct . '%')->get();
+    }
+
+    public function showProductDetail($productID)
+    {
+        return $this->_model->find($productID)->productDetail;
+    }
 }
+
