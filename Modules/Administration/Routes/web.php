@@ -19,6 +19,9 @@ Route::group(['prefix' => 'administration', 'namespace' => '\Modules\Administrat
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Auth\LoginController@login')->name('post-login');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('/register', 'Auth\RegisterController@register')->name('post-register');
+    Route::get('/login-success', 'Auth\LoginController@loginSuccess')->name('login.success');
 
 
     Route::group(['prefix' => 'admin', 'middleware'=>'web'], function () {
@@ -26,6 +29,7 @@ Route::group(['prefix' => 'administration', 'namespace' => '\Modules\Administrat
         Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.post-login');
         Route::group(['middleware' => 'auth.admin'], function () {
             Route::get('/dashboard', 'AdministrationController@index')->name('admin.dashboard');
+            Route::get('/user', 'AdministrationController@showUsers')->name('admin.user.list');
             Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
         });
 
