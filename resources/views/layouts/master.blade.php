@@ -37,10 +37,7 @@
     @include('layouts.sidebar')
     <!-- End Main Sidebar Container -->
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        @yield('content')
-    </div>
+    @yield('content')
     <!-- /.content-wrapper -->
     @include('layouts.footer')
 </div>

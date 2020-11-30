@@ -39,19 +39,19 @@
 
 
                 <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @endif" style="background-image: none" placeholder="Email" value="{{old("email", "")}}">
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" style="background-image: none" placeholder="Email" value="{{old("email", "")}}">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope @error('email') text-danger @endif"></span>
+                            <span class="fas fa-envelope @error('email') text-danger @enderror"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @endif" style="background-image: none" placeholder="Password" >
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" style="background-image: none" placeholder="Password" >
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock @error('password') text-danger @endif"></span>
+                            <span class="fas fa-lock @error('password') text-danger @enderror"></span>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
 
             <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
+                <a href="{{route('register')}}" class="btn btn-block btn-primary">
                     Đăng kí tài khoản
                 </a>
             </div>
@@ -78,8 +78,29 @@
     <script src="{{asset("plugins/jquery/jquery.min.js")}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{asset("plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+    <!-- SweetAlert2 -->
+    <script src="{{asset("plugins/sweetalert2/sweetalert2.min.js")}}"></script>
+    <!-- Toastr -->
+    <script src="{{asset("plugins/toastr/toastr.min.js")}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset("admin/js/adminlte.min.js")}}"></script>
-
+</div>
+<script>
+    let Toast = null;
+    $(function() {
+         Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        @if(session('success'))
+        Toast.fire({
+            icon: 'success',
+            title: "{{session('success')}}"
+        });
+        @endif
+    });
+</script>
 </body>
 </html>

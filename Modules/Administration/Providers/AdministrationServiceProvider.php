@@ -40,7 +40,7 @@ class AdministrationServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->app->singleton(UserInterface::class, UserRepository::class);
+        $this->app->bind(UserInterface::class, UserRepository::class);
     }
 
     /**
