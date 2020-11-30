@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('web.auth.login');
     }
 
     public function login(LoginRequest $request)
@@ -69,6 +69,6 @@ class LoginController extends Controller
 
     public function loginSuccess() {
         $user = $this->userInterface->getUserLogin();
-        return view('auth.login-success', compact('user'));
+        return view('web.auth.login-success', compact('user'));
     }
 }

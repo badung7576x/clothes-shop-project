@@ -26,7 +26,7 @@ class ProductRepository extends BaseRepository implements ProductInterface
 
     public function findByName($nameProduct)
     {
-        return $this->_model::where('name', 'like', '%' . $nameProduct . '%')->get();
+        return $this->_model->where('name', 'like', '%' . $nameProduct . '%')->get();
     }
 
     public function showProductDetail($productID)

@@ -30,16 +30,16 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <!-- Navbar -->
-    @include('layouts.navbar')
+    @include('admin.layouts.navbar')
     <!-- End Navbar-->
 
     <!-- Main Sidebar Container -->
-    @include('layouts.sidebar')
+    @include('admin.layouts.sidebar')
     <!-- End Main Sidebar Container -->
 
     @yield('content')
     <!-- /.content-wrapper -->
-    @include('layouts.footer')
+    @include('admin.layouts.footer')
 </div>
 <!-- ./wrapper -->
 <!-- jQuery -->

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('content')
 <div class="card card-primary">
     <h1 class="text-center card-header">PRODUCT LIST</h1>
@@ -49,7 +49,7 @@
             </button>
             </div>
             <div class="modal-body">
-            Are you sure you want to delete this product ? 
+            Are you sure you want to delete this product ?
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -63,9 +63,9 @@
         </div>
     </div>
     <div>
-        <span class="d-flex flex-row-reverse bd-highlight">link paginate</span> 
+        <span class="d-flex flex-row-reverse bd-highlight">link paginate</span>
     </div>
-</div> 
+</div>
 @endsection
 
 @push('scripts')
@@ -73,7 +73,7 @@
     $(document).ready(function(){
         let oldIdTarget;
     $(".delete-confirm-btn").click(function() {
-        let idTarget = $(this).data('id');   
+        let idTarget = $(this).data('id');
         action = $("#delete-product").attr("action");
         if (action.search('id') != -1) {
             action = action.replace('id', idTarget);
