@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'name' => 'Administration'
+    'name' => 'Administration',
+
+    'login-success-url' => env('AFTER_LOGIN_REDIRECT')
 ];
