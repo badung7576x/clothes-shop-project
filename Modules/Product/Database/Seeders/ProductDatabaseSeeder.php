@@ -15,6 +15,6 @@ class ProductDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $this->call(ProductTableSeeder::class);
+       // $this->call(ProductTableSeeder::class);
     }
 }

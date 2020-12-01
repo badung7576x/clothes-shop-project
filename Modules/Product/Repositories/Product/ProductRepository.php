@@ -33,5 +33,9 @@ class ProductRepository extends BaseRepository implements ProductInterface
     {
         return $this->_model->find($productID)->productDetail;
     }
+    public function paginateProductsByCategory($perPage, $category_id)
+    {
+        return $this->_model->where('category_id', $category_id)->paginate($perPage);
+    }
 }
 

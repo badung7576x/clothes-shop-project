@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('product')->group(function() {
+Route::prefix('/')->group(function() {
     //Route::get('/', 'ProductController@index');
     Route::resource('products', '\Modules\Product\Http\Controllers\ProductController');
 });
+

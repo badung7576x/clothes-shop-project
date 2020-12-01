@@ -12,10 +12,15 @@ class Product extends Model
         'name' ,
         'price',
         'category_id',
-        'information',
+        'quantity',
+        'status'
     ];
     public function productDetail()
     {
         return $this->hasOne('Modules\Product\Entities\ProductDetail');
+    }
+    public function imageProduct()
+    {
+        return $this->hasMany('Modules\Product\Entities\ImageProduct');
     }
 }

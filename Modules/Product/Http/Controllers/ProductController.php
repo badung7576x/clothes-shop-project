@@ -22,7 +22,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-//        $products = $this->productRepository->paginateProducts(25);
-        return view('web.home.index');
+
+        $products = $this->productRepository->paginateProducts(8);
+        // $productsMan = $this->productRepository->paginateProductsByCategory(8, 1);
+        // dd($productsMan);
+        return view('web.home.index', ['products' => $products]);
+
     }
 }
