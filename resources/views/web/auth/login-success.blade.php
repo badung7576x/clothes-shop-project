@@ -22,7 +22,7 @@
 <!-- Automatic element centering -->
     <div class="lockscreen-wrapper">
         <div class="lockscreen-logo">
-            <a href="#"><b>Shop </b>ABC</a>
+            <a href="#"><b>Eshop</b></a>
         </div>
         <!-- User name -->
         <div class="lockscreen-name">{{$user->name}}</div>

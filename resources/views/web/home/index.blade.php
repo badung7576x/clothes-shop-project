@@ -16,12 +16,9 @@
                         <div class="nav-main">
                             <!-- Tab Nav -->
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">Man</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#women" role="tab">Woman</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#kids" role="tab">Kids</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#accessories" role="tab">Accessories</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#essential" role="tab">Essential</a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#prices" role="tab">Prices</a></li>
+{{--                                @foreach($categories as $category)--}}
+{{--                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">{{$category->name}}</a></li>--}}
+{{--                                @endforeach--}}
                             </ul>
                             <!--/ End Tab Nav -->
                         </div>
@@ -34,9 +31,9 @@
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                                                 <div class="single-product">
                                                     <div class="product-img">
-                                                        <a href="product-details.html">
-                                                        <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                                            <img class="hover-img" src="{{@$product->imageProduct->first()['url']}}" alt="#">
+                                                        <a href="#">
+                                                        <img class="default-img" src="{{@$product->images->first()['url']}}" alt="#">
+                                                            <img class="hover-img" src="{{@$product->images->first()['url']}}" alt="#">
                                                         </a>
                                                         <div class="button-head">
                                                             <div class="product-action">
@@ -92,7 +89,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>

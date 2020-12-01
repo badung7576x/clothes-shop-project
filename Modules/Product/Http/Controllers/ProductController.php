@@ -4,29 +4,35 @@ namespace Modules\Product\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Routing\Controller;
-use Modules\Product\Repositories\Product\ProductInterface;
+use Modules\Product\Services\ProductService;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends Controller
 {
 
 
-    protected $productRepository;
+    protected $productService;
 
-    public function __construct(ProductInterface $productRepository)
+    public function __construct(ProductService $productService)
     {
-        $this->productRepository = $productRepository;
+        $this->productService = $productService;
     }
+
     /**
      * Display a listing of the resource.
+     * @param Request $request
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if(session('user')) {
+            $user = session()->get('user');
+            session(['is-login' => true, 'user' => $user]);
+        }
 
-        $products = $this->productRepository->paginateProducts(8);
-        // $productsMan = $this->productRepository->paginateProductsByCategory(8, 1);
-        // dd($productsMan);
-        return view('web.home.index', ['products' => $products]);
+        $products = $this->productService->getAllProducts();
+        $categories = $this->productService->getAllCategories();
+        return view('web.home.index', compact('products', 'categories'));
 
     }
 }

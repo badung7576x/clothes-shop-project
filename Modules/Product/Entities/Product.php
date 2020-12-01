@@ -19,7 +19,7 @@ class Product extends Model
     {
         return $this->hasOne('Modules\Product\Entities\ProductDetail');
     }
-    public function imageProduct()
+    public function images()
     {
         return $this->hasMany('Modules\Product\Entities\ImageProduct');
     }

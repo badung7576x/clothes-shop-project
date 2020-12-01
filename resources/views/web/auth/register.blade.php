@@ -22,7 +22,7 @@
 
     <div class="register-box">
         <div class="register-logo">
-            <a href="#"><b>Shop </b>ABC</a>
+            <a href="#"><b>EShop</b></a>
         </div>
 
         <div class="card">

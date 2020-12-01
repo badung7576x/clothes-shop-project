@@ -19,9 +19,9 @@ class ProductRepository extends BaseRepository implements ProductInterface
         return Product::class;
     }
 
-    public function paginateProducts($perPage)
+    public function paginateProducts()
     {
-        return $this->_model->paginate($perPage);
+        return $this->_model->with('images')->paginate(PER_PAGE);
     }
 
     public function findByName($nameProduct)

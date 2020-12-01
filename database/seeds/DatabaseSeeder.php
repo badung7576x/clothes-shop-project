@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Modules\Product\Entities\ProductDetail;
 
 class DatabaseSeeder extends Seeder
 {

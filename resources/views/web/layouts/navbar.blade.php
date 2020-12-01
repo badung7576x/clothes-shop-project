@@ -18,9 +18,13 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-shopping-cart"></i> <a href="#">Lịch sử mua hàng</a></li>
-                            <li><i class="ti-user"></i> <a href="#">Đăng ký</a></li>
-                            <li><i class="ti-power-off"></i><a href="#">Đăng nhập</a></li>
+                            @if(session('is-login'))
+                                <li><i class="ti-shopping-cart"></i> <a href="#">Lịch sử mua hàng</a></li>
+                                <li><i class="ti-user"></i> <a href="{{route('logout')}}">Đăng xuất</a></li>
+                            @else
+                                <li><i class="ti-user"></i> <a href="{{route('register')}}">Đăng ký</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{route('login')}}">Đăng nhập</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- End Top Right -->
@@ -58,9 +62,9 @@
                         <div class="search-bar">
                             <select>
                                 <option selected="selected">Toàn bộ</option>
-                                <option>watch</option>
-                                <option>mobile</option>
-                                <option>kid’s item</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
                             </select>
                             <form>
                                 <input name="search" placeholder="Nhập từ khóa...." type="search">

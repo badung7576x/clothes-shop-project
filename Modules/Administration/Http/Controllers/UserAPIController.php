@@ -67,4 +67,41 @@ class UserAPIController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function checkLogin(Request $request)
+    {
+
+//        $request->validate([
+//            'token' => 'required'
+//        ]);
+        try {
+//            \JWTAuth::invalidate($request->bearerToken());
+
+//            $result = $this->userService->checkLogin(1);
+            $result['status'] = true;
+
+            if($result['status']) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'User login!',
+                    'user' => \JWTAuth::user($request->bearerToken())
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User not login!'
+                ]);
+            }
+
+        } catch (JWTException $exception) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Token incorrect!'
+            ], 500);
+        }
+    }
 }
