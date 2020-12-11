@@ -15,11 +15,11 @@ class AdministrationController extends AdministrationBaseController
     }
 
     public function index() {
-        return view('dashboard.index');
+        return view('admin.dashboard.index');
     }
 
     public function showUsers() {
         $users = $this->userInterface->getAll();
-        return view('user.index', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 }

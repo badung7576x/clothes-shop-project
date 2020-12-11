@@ -13,4 +13,8 @@ class UserService
     public function __construct(UserInterface $userInterface) {
         $this->userInterface = $userInterface;
     }
+
+    public function checkLogin($userId) {
+        return $this->userInterface->checkLogin($userId);
+    }
 }

@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('web.auth.login');
     }
 
     public function login(LoginRequest $request)
@@ -50,8 +50,9 @@ class LoginController extends Controller
             'password' => $request->input('password')
         ];
         if($this->guard()->attempt($credential)) {
+            $user = Auth::user();
             $urlRedirect = config('administration.login-success-url') ?? route('login.success');
-            return redirect()->to($urlRedirect);
+            return redirect()->to($urlRedirect)->with('user', $user);
         }
 
         return redirect()->back()->withInput()->with("error", "Email hoặc mật khẩu chưa đúng");
@@ -60,7 +61,8 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
-        return redirect()->route('login');
+        $urlRedirect = config('administration.login-success-url') ?? route('login');
+        return redirect()->to($urlRedirect)->with('is-login', false);
     }
 
     public function guard() {
@@ -69,6 +71,6 @@ class LoginController extends Controller
 
     public function loginSuccess() {
         $user = $this->userInterface->getUserLogin();
-        return view('auth.login-success', compact('user'));
+        return view('web.auth.login-success', compact('user'));
     }
 }

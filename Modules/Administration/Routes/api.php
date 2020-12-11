@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([ 'namespace' => '\Modules\Administration\Http\Controllers'], function () {
     Route::post('/login', 'UserAPIController@login')->name('api.login');
+//    Route::post('/check-login', 'UserAPIController@checkLogin')->name('api.login.check');
 
     Route::group(['middleware' => 'auth.jwt'], function () {
         Route::post('/logout', 'UserAPIController@logout')->name('api.logout');
+//        Route::get('/check-login', 'UserAPIController@checkLogin')->name('api.login.check');
     });
 });

@@ -29,4 +29,18 @@ class UserRepository extends BaseRepository implements UserInterface
     {
         return Auth::user();
     }
+
+    public function checkLogin($userId)
+    {
+        $result = [];
+        $user = $this->_model->find($userId);
+
+        if(Auth::check()) {
+            $result['status'] = true;
+            $result['user'] = Auth::user();
+        } else {
+            $result['status'] = false;
+        }
+        return $result;
+    }
 }
