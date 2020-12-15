@@ -32,6 +32,7 @@ Route::group(['prefix' => 'administration', 'namespace' => '\Modules\Administrat
         Route::group(['middleware' => 'auth.admin'], function () {
             Route::get('/dashboard', 'AdministrationController@index')->name('admin.dashboard');
             Route::get('/user', 'AdministrationController@showUsers')->name('admin.user.list');
+            Route::post('/url-setting', 'AdministrationController@settingUrl')->name('admin.setting.url');
             Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
         });
 

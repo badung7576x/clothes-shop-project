@@ -48,9 +48,9 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $token = null;
-
+        $urlRedirect = $this->userService->getRedirectUrl();
         if ($token = \JWTAuth::attempt($credentials)) {
-            $urlRedirect = config('administration.login-success-url') ?? route('login.success');
+            $urlRedirect = $urlRedirect->url ?? route('login.success');
             return redirect()->to($urlRedirect . "?token=" . $token);
         }
 

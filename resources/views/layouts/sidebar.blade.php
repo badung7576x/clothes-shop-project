@@ -50,8 +50,5 @@
         </nav>
         <!-- /.sidebar-menu -->
     </div>
-    <script>
-        $(".nav-link").
-    </script>
     <!-- /.sidebar -->
 </aside>

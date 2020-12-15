@@ -23,7 +23,10 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset("plugins/daterangepicker/daterangepicker.css")}}">
     <!-- summernote -->
-    <link rel="stylesheet" href="{{asset("plugins/summernote/summernote-bs4.css")}}">
+
+    <link rel="stylesheet" href="{{asset("plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css")}}">
+
+    <link rel="stylesheet" href="{{asset("plugins/toastr/toastr.min.css")}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -67,5 +70,9 @@
 {{--<script src="{{asset("admin/js/pages/dashboard.js")}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("admin/js/demo.js")}}"></script>
+
+<script src="{{asset("plugins/sweetalert2/sweetalert2.min.js")}}"></script>
+
+<script src="{{asset("plugins/toastr/toastr.min.js")}}"></script>
 </body>
 </html>

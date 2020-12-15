@@ -4,6 +4,8 @@ namespace Modules\Administration\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Administration\Repositories\RedirectURL\RedirectUrlInterface;
+use Modules\Administration\Repositories\RedirectURL\RedirectUrlRepository;
 use Modules\Administration\Repositories\User\UserInterface;
 use Modules\Administration\Repositories\User\UserRepository;
 
@@ -41,6 +43,7 @@ class AdministrationServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
         $this->app->bind(UserInterface::class, UserRepository::class);
+        $this->app->bind(RedirectUrlInterface::class, RedirectUrlRepository::class);
     }
 
     /**
