@@ -27,6 +27,11 @@ class UserRepository extends BaseRepository implements UserInterface
 
     public function getUserLogin()
     {
-        return Auth::user();
+        return \JWTAuth::parseToken()->authenticate();
+    }
+
+    public function getUserFromEmail($email)
+    {
+        return $this->_model->where('email', $email)->first();
     }
 }

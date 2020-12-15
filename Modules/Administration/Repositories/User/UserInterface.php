@@ -11,4 +11,6 @@ interface UserInterface
     public function create(array $attributes);
 
     public function getUserLogin();
+
+    public function getUserFromEmail($email);
 }

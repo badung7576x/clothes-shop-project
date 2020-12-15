@@ -19,5 +19,6 @@ Route::group([ 'namespace' => '\Modules\Administration\Http\Controllers'], funct
 
     Route::group(['middleware' => 'auth.jwt'], function () {
         Route::post('/logout', 'UserAPIController@logout')->name('api.logout');
+        Route::post('/user', 'UserAPIController@getAuthUser')->name('api.login-user');
     });
 });

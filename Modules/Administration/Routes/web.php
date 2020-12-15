@@ -18,11 +18,13 @@ Route::group(['prefix' => 'administration', 'namespace' => '\Modules\Administrat
 
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('/login', 'Auth\LoginController@login')->name('post-login');
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'Auth\RegisterController@register')->name('post-register');
     Route::get('/login-success', 'Auth\LoginController@loginSuccess')->name('login.success');
 
+    Route::group(['middleware' => 'auth.jwt'], function () {
+        Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    });
 
     Route::group(['prefix' => 'admin', 'middleware'=>'web'], function () {
         Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

@@ -13,7 +13,6 @@ class UserAPIController extends Controller
     /**
      * @var bool
      */
-    public $loginAfterSignUp = true;
 
     protected $userService;
 
@@ -27,44 +26,37 @@ class UserAPIController extends Controller
      */
     public function login(Request $request)
     {
-        $input = $request->only('email', 'password');
-        $token = null;
+        $credentials = $request->only('email', 'password');
+        $user = $this->userService->getUserFromEmail($credentials);
 
-        if (!$token = \JWTAuth::attempt($input)) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Email or Password',
-            ], 401);
+        if (!empty($user) && $request->get('no_password') != null) {
+            $token = \JWTAuth::fromUser($user);
+        } else {
+            if (!$token = \JWTAuth::attempt($credentials)) {
+                return response()->json(['message' => 'Email hoặc mật khẩu chưa chính xác'], 422);
+            }
         }
 
-        return response()->json([
-            'status' => true,
-            'token' => $token,
-        ]);
+        return response()->json(['message' => 'Đã đăng nhập thành công','token' => $token, 'user' => $user]);
     }
 
     /**
      * @param Request $request
      * @return JsonResponse
      */
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->validate([
-            'token' => 'required'
-        ]);
-
-        try {
-            \JWTAuth::invalidate($request->token);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User logged out successfully'
-            ]);
-        } catch (JWTException $exception) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Sorry, the user cannot be logged out'
-            ], 500);
+        $token = \JWTAuth::getToken();
+        if ($token) {
+            \JWTAuth::invalidate($token);
         }
+
+        return response()->json(['message' => 'Đăng xuất thành công!']);
+    }
+
+    public function getAuthUser(){
+        $user = \JWTAuth::parseToken()->authenticate();
+
+        return response()->json(['user' => $user]);
     }
 }

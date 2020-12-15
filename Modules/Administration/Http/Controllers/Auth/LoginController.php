@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Modules\Administration\Http\Requests\LoginRequest;
 use Modules\Administration\Repositories\User\UserInterface;
+use Modules\Administration\Services\UserService;
 
 class LoginController extends Controller
 {
@@ -26,16 +27,16 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $userInterface;
+    protected $userService;
 
     /**
      * Create a new controller instance.
      *
-     * @param UserInterface $userInterface
+     * @param UserService $userService
      */
 
-    public function __construct(UserInterface $userInterface) {
-        $this->userInterface = $userInterface;
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
     }
 
     public function showLoginForm()
@@ -45,30 +46,28 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $credential = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-        ];
-        if($this->guard()->attempt($credential)) {
+        $credentials = $request->only('email', 'password');
+        $token = null;
+
+        if ($token = \JWTAuth::attempt($credentials)) {
             $urlRedirect = config('administration.login-success-url') ?? route('login.success');
-            return redirect()->to($urlRedirect);
+            return redirect()->to($urlRedirect . "?token=" . $token);
         }
 
         return redirect()->back()->withInput()->with("error", "Email hoặc mật khẩu chưa đúng");
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $this->guard()->logout();
+        $token = \JWTAuth::getToken();
+        if ($token) {
+            \JWTAuth::invalidate($token);
+        }
         return redirect()->route('login');
     }
 
-    public function guard() {
-        return Auth::guard('web');
-    }
-
     public function loginSuccess() {
-        $user = $this->userInterface->getUserLogin();
+        $user = $this->userService->getUserLogin();
         return view('auth.login-success', compact('user'));
     }
 }
