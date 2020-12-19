@@ -15,11 +15,11 @@
                     <div class="product-info">
                         <div class="nav-main">
                             <!-- Tab Nav -->
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-{{--                                @foreach($categories as $category)--}}
-{{--                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">{{$category->name}}</a></li>--}}
-{{--                                @endforeach--}}
-                            </ul>
+                            {{-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+                               @foreach($categories as $category)
+                                   <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="{{strtolower('#'.$category->name)}}" role="tab">{{$category->name}}</a></li>
+                               @endforeach
+                            </ul> --}}
                             <!--/ End Tab Nav -->
                         </div>
                         <div class="tab-content" id="myTabContent">
@@ -32,12 +32,12 @@
                                                 <div class="single-product">
                                                     <div class="product-img">
                                                         <a href="#">
-                                                        <img class="default-img" src="{{@$product->images->first()['url']}}" alt="#">
+                                                        <img class="default-img" src="{{@$product->images->last()['url']}}" alt="#">
                                                             <img class="hover-img" src="{{@$product->images->first()['url']}}" alt="#">
                                                         </a>
                                                         <div class="button-head">
                                                             <div class="product-action">
-                                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                            <a data-toggle="modal" data-target="#exampleModal" title="Quick View" type="button" href="#" class="show_modal" data-id="{{$product->id}}"><i class=" ti-eye" ></i><span>Quick Shop</span></a>
                                                                 <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                                             </div>
@@ -197,16 +197,16 @@
                             <div class="product-gallery">
                                 <div class="quickview-slider-active">
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img class="single-slider-img" src="https://picsum.photos/569/528?random=1" alt="#">
                                     </div>
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img class="single-slider-img" src="https://picsum.photos/569/528?random=2" alt="#">
                                     </div>
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img class="single-slider-img" src="https://picsum.photos/569/528?random=3" alt="#">
                                     </div>
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img class="single-slider-img" src="https://picsum.photos/569/528?random=4" alt="#">
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                             <div class="quickview-content">
-                                <h2>NAME PRODUCT</h2>
+                                <h2 id="name_product">NAME PRODUCT</h2>
                                 <div class="quickview-ratting-review">
                                     <div class="quickview-ratting-wrap">
                                         <div class="quickview-ratting">
@@ -296,3 +296,17 @@
     </div>
     <!-- Modal end -->
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function(){
+        console.log("jquery");
+        $(".show_modal").click(function() {
+            let idTarget = $(this).data('id');   
+            slider = $(".single-slider-img").attr({
+                "src" : 'https://picsum.photos/569/528?random=' + idTarget,
+            });
+        });
+    });
+</script>
+@endpush

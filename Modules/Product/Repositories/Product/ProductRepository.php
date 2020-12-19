@@ -21,7 +21,7 @@ class ProductRepository extends BaseRepository implements ProductInterface
 
     public function paginateProducts()
     {
-        return $this->_model->with('images')->paginate(PER_PAGE);
+        return $this->_model->with('images')->paginate(8);
     }
 
     public function findByName($nameProduct)
@@ -33,9 +33,9 @@ class ProductRepository extends BaseRepository implements ProductInterface
     {
         return $this->_model->find($productID)->productDetail;
     }
-    public function paginateProductsByCategory($perPage, $category_id)
+    public function paginateProductsByCategory($category_id)
     {
-        return $this->_model->where('category_id', $category_id)->paginate($perPage);
+        return $this->_model->where('category_id', $category_id)->get();
     }
 }
 

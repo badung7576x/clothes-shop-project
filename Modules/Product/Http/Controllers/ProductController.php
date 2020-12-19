@@ -34,5 +34,19 @@ class ProductController extends Controller
         $categories = $this->productService->getAllCategories();
         return view('web.home.index', compact('products', 'categories'));
 
+        // $products = $this->productRepository->paginateProducts(8);
+        //  $productsMan = $this->productRepository->paginateProductsByCategory(1);
+        //  $productsWoman = $this->productRepository->paginateProductsByCategory(2);
+        //  $productsKid = $this->productRepository->paginateProductsByCategory(3);
+        //  $productsAccess = $this->productRepository->paginateProductsByCategory(4);
+        //  $productsPrice = $this->productRepository->paginateProductsByCategory(5);
+        // return view('web.home.index', ['products' => $products,
+        //     'productsWoman' => $productsWoman,
+        //     'productsKid' => $productsKid,
+        //     'productsAccess' => $productsAccess,
+        //     'productsPrice' => $productsPrice,
+        //     'productsMan' => $productsMan
+        // ]);
     }
+
 }

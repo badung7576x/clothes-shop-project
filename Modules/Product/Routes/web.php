@@ -16,3 +16,8 @@ Route::prefix('/')->group(function() {
     Route::resource('products', '\Modules\Product\Http\Controllers\ProductController');
 });
 
+// Route::prefix('administration/admin')->group(function() {
+//     Route::get('products', '\Modules\Product\Http\Controllers\ProductController@showProducts');
+   
+// });
+

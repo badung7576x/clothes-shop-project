@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{{asset("web/css/reset.css")}}">
     <link rel="stylesheet" href="{{asset("web/css/style.css")}}">
     <link rel="stylesheet" href="{{asset("web/css/responsive.css")}}">
+    
 </head>
 <body class="js">
 @include('web.layouts.navbar')
@@ -78,5 +79,6 @@
 <script src="{{asset("web/js/easing.js")}}"></script>
 <!-- Active JS -->
 <script src="{{asset("web/js/active.js")}}"></script>
+@stack('scripts')
 </body>
 </html>

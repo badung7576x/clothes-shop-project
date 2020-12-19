@@ -9,6 +9,6 @@ interface ProductInterface
     public function paginateProducts();
     public function findByName($nameProduct);
     public function showProductDetail($productID);
-    public function paginateProductsByCategory($perPage, $category_id);
+    public function paginateProductsByCategory($category_id);
 }
 
